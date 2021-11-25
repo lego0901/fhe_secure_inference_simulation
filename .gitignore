@@ -2,7 +2,12 @@
 __pycache__/
 *.py[cod]
 
-# Downloaded file / generated log, models
+# Downloaded file / generated log, models, plots
 data
-log
+logs
 saved_models
+plots
+*.pth
+
+# Development environment
+.vscode
