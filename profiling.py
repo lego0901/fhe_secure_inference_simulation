@@ -17,7 +17,8 @@ class Profiling:
         x = x.flatten()
         classes = torch.zeros(*x.shape, dtype=torch.uint8).to(self.device)
         for border in self.division:
-            classes += (x >= border).to(self.device)
+            # Logical not: to count inf and nan as biggest category
+            classes += (x.abs() < border).logical_not().to(self.device)
         for i in range(len(self.counts)):
             self.counts[i] += (classes == i).sum().item()
 
