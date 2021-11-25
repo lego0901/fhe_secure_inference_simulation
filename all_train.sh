@@ -1,14 +1,12 @@
 #!/bin/bash
 
 MODEL_PATH="./saved_models"
-LOG_PATH="./logs"
 
 RELU_OPTION=("" "--use_leaky_relu=True")
 RELU_ARG=("" "leaky_")
 RELU_NAME=("" " leaky")
 
 mkdir -p $MODEL_PATH
-mkdir -p $LOG_PATH
 
 # Pretraining stage
 for relu in {0..1}
@@ -52,7 +50,6 @@ do
                     --block_type=chebyshev --poly_degree=${m} --clip_before=True
                 python3 eval.py ${RELU_OPTION[relu]} \
                     --load_path=$MODEL_PATH/simple_mnist_${RELU_ARG[relu]}l${norm}_act_tuned_chebyshev_${m}_1e-${n}.pth \
-                    --json_path=$LOG_PATH/simple_mnist_${RELU_ARG[relu]}l${norm}_act_tuned_chebyshev_${m}_1e-${n}.json \
                     --block_type=chebyshev --poly_degree=${m}
 
                 echo "Fitting into Remez ${m} degree with${RELU_NAME[relu]} 1e-${n} act decay in L${norm}"
@@ -63,7 +60,6 @@ do
                     --block_type=remez --poly_degree=${m} --clip_before=True
                 python3 eval.py ${RELU_OPTION[relu]} \
                     --load_path=$MODEL_PATH/simple_mnist_${RELU_ARG[relu]}l${norm}_act_tuned_remez_${m}_1e-${n}.pth \
-                    --json_path=$LOG_PATH/simple_mnist_${RELU_ARG[relu]}l${norm}_act_tuned_remez_${m}_1e-${n}.json \
                     --block_type=remez --poly_degree=${m}
 
                 echo "Fitting into Chebyshev ${m} degree without prefit stage${RELU_NAME[relu]} 1e-${n} act decay in L${norm}"
@@ -74,7 +70,6 @@ do
                     --block_type=chebyshev --poly_degree=${m} --clip_before=True
                 python3 eval.py ${RELU_OPTION[relu]} \
                     --load_path=$MODEL_PATH/simple_mnist_${RELU_ARG[relu]}l${norm}_tuned_chebyshev_${m}_1e-${n}.pth \
-                    --json_path=$LOG_PATH/simple_mnist_${RELU_ARG[relu]}l${norm}_tuned_chebyshev_${m}_1e-${n}.json \
                     --block_type=chebyshev --poly_degree=${m}
 
                 echo "Fitting into Remez ${m} degree without prefit stage${RELU_NAME[relu]} 1e-${n} act decay in L${norm}"
@@ -85,7 +80,6 @@ do
                     --block_type=remez --poly_degree=${m} --clip_before=True
                 python3 eval.py ${RELU_OPTION[relu]} \
                     --load_path=$MODEL_PATH/simple_mnist_${RELU_ARG[relu]}l${norm}_tuned_remez_${m}_1e-${n}.pth \
-                    --json_path=$LOG_PATH/simple_mnist_${RELU_ARG[relu]}l${norm}_tuned_remez_${m}_1e-${n}.json \
                     --block_type=remez --poly_degree=${m}
             done
         done
