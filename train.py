@@ -29,7 +29,7 @@ if __name__ == "__main__":
     parser.add_argument("--use_leaky_relu", default=False, help="to use leaky relu")
     parser.add_argument("--leaky_relu_negative_slope", default=0.1, type=float, help="negative slope")
     parser.add_argument("--clip_before", default=True, help="clip to [-1, 1] before approx")
-    parser.add_argument("--manual_seed", default=23, type=int, help="manual seed to avoid randomness")
+    parser.add_argument("--manual_seed", default=25, type=int, help="manual seed to avoid randomness")
     # fmt: on
 
     args = parser.parse_args()
