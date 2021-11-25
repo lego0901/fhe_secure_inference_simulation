@@ -36,7 +36,8 @@ class FHEModule(nn.Module):
         activation_sum = 0
         for module in self.modules():
             if isinstance(module, ReLU) or isinstance(module, LeakyReLU):
-                activation_sum += torch.norm(module.activation, p)
+                batch_wise_act = module.activation.flatten(start_dim=1)
+                activation_sum += torch.norm(batch_wise_act, p, dim=1).mean()
         return activation_sum
 
     @staticmethod
@@ -53,22 +54,19 @@ class SimpleMNISTNet(FHEModule):
     ):
         super().__init__()
         self.conv1 = nn.Conv2d(1, 16, 3)
-        self.mp1 = MaxPool2d2x2(n, block_type)
         self.relu1 = self.make_relu(n, block_type, use_leaky_relu, negative_slope)
+        self.mp1 = MaxPool2d2x2(n, block_type)
         self.conv2 = nn.Conv2d(16, 32, 3)
-        self.mp2 = MaxPool2d2x2(n, block_type)
         self.relu2 = self.make_relu(n, block_type, use_leaky_relu, negative_slope)
+        self.mp2 = MaxPool2d2x2(n, block_type)
         self.fc3 = nn.Linear(32 * 6 * 6, 120)
         self.relu3 = self.make_relu(n, block_type, use_leaky_relu, negative_slope)
-        self.fc4 = nn.Linear(120, 84)
-        self.relu4 = self.make_relu(n, block_type, use_leaky_relu, negative_slope)
-        self.fc5 = nn.Linear(84, 10)
+        self.fc4 = nn.Linear(120, 10)
 
     def forward(self, x):
         x = self.mp1(self.relu1(self.conv1(x)))
         x = self.mp2(self.relu2(self.conv2(x)))
         x = x.flatten(start_dim=1)
         x = self.relu3(self.fc3(x))
-        x = self.relu4(self.fc4(x))
-        x = self.fc5(x)
+        x = self.fc4(x)
         return x

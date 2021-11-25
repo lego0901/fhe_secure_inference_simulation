@@ -6,6 +6,7 @@ import torchvision.transforms as transforms
 
 import os
 import argparse
+import numpy as np
 
 from network import *
 
@@ -27,7 +28,7 @@ if __name__ == "__main__":
     parser.add_argument("--device", default="cuda", help="device for model")
     parser.add_argument("--use_leaky_relu", default=False, help="to use leaky relu")
     parser.add_argument("--leaky_relu_negative_slope", default=0.1, type=float, help="negative slope")
-    parser.add_argument("--clip_before", default=False, help="clip to [-1, 1] before approx")
+    parser.add_argument("--clip_before", default=True, help="clip to [-1, 1] before approx")
     parser.add_argument("--manual_seed", default=23, type=int, help="manual seed to avoid randomness")
     # fmt: on
 
@@ -35,6 +36,7 @@ if __name__ == "__main__":
     print(args)
 
     torch.manual_seed(args.manual_seed)
+    np.random.seed(args.manual_seed)
 
     net = SimpleMNISTNet(
         n=args.poly_degree,
@@ -86,9 +88,7 @@ if __name__ == "__main__":
             output = net(data)
 
             loss_orig = criterion(output, target)
-            loss_act = (
-                net.sum_activation_lk_norm(args.activation_decay_norm) / batch_size
-            )
+            loss_act = net.sum_activation_lk_norm(args.activation_decay_norm)
             loss = loss_orig + loss_act * args.activation_decay
 
             optimizer.zero_grad()

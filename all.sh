@@ -17,7 +17,7 @@ do
     do
         echo "Training with${RELU_NAME[relu]} activation decay=1e-4 with L${norm} act decay"
         python3 train.py --activation_decay=1e-4 --activation_decay_norm=${norm} \
-            ${RELU_OPTION[relu]} --lr=0.1 --clip_before=True \
+            ${RELU_OPTION[relu]} --lr=0.1 \
             --save_path=$MODEL_PATH/simple_mnist_${RELU_ARG[relu]}l${norm}.pth
     done
 done
@@ -40,7 +40,7 @@ for relu in {0..1}
 do
     for norm in {1..2}
     do
-        for m in {17..4}
+        for m in {5..15}
         do
             for n in {2..3}
             do
