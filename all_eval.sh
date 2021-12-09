@@ -19,13 +19,13 @@ do
             echo "Evaluating${RELU_NAME[relu]} with Chebyshev's ${m} degree, learned with L${norm}-norm"
             python3 eval.py ${RELU_OPTION[relu]} \
                 --load_path=$MODEL_PATH/simple_mnist_${RELU_ARG[relu]}l${norm}.pth \
-                --json_path=$LOG_PATH/simple_mnist_${RELU_ARG[relu]}l${norm}_chebyshev.json \
+                --json_path=$LOG_PATH/simple_mnist_${RELU_ARG[relu]}l${norm}_chebyshev_${m}.json \
                 --block_type=chebyshev --poly_degree=${m}
             
             echo "Evaluating${RELU_NAME[relu]} with Remez's ${m} degree, learned with L${norm}-norm"
             python3 eval.py ${RELU_OPTION[relu]} \
                 --load_path=$MODEL_PATH/simple_mnist_${RELU_ARG[relu]}l${norm}.pth \
-                --json_path=$LOG_PATH/simple_mnist_${RELU_ARG[relu]}l${norm}_remez.json \
+                --json_path=$LOG_PATH/simple_mnist_${RELU_ARG[relu]}l${norm}_remez_${m}.json \
                 --block_type=remez --poly_degree=${m}
         done
     done
@@ -41,13 +41,13 @@ do
             echo "Evaluating after large act${RELU_NAME[relu]} with Chebyshev's ${m} degree, learned with L${norm}-norm"
             python3 eval.py ${RELU_OPTION[relu]} \
                 --load_path=$MODEL_PATH/simple_mnist_${RELU_ARG[relu]}l${norm}_act.pth \
-                --json_path=$LOG_PATH/simple_mnist_${RELU_ARG[relu]}l${norm}_act_chebyshev.json \
+                --json_path=$LOG_PATH/simple_mnist_${RELU_ARG[relu]}l${norm}_act_chebyshev_${m}.json \
                 --block_type=chebyshev --poly_degree=${m}
             
             echo "Evaluating after large act${RELU_NAME[relu]} with Remez's ${m} degree, learned with L${norm}-norm"
             python3 eval.py ${RELU_OPTION[relu]} \
                 --load_path=$MODEL_PATH/simple_mnist_${RELU_ARG[relu]}l${norm}_act.pth \
-                --json_path=$LOG_PATH/simple_mnist_${RELU_ARG[relu]}l${norm}_act_remez.json \
+                --json_path=$LOG_PATH/simple_mnist_${RELU_ARG[relu]}l${norm}_act_remez_${m}.json \
                 --block_type=remez --poly_degree=${m}
         done
     done
