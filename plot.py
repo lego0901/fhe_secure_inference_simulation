@@ -439,6 +439,7 @@ if __name__ == "__main__":
     ax.set_xticks(list(range(len(xticklabels))))
     ax.set_xticklabels(xticklabels, fontsize=8, rotation=10)
     ax.set_yscale("symlog")
+    ax.set_ybound(-1, 10 ** 9)
     ax.set_title("Fine-tuning Phase v.s. Just Switching into Approx")
     ax.set_title("Affects of Fine-tuning for Activation Magnitude Occurences")
     ax.set_xlabel("activation magnitude")
@@ -485,12 +486,13 @@ if __name__ == "__main__":
         file_name=os.path.join(
             args.log_dir, "simple_mnist_l1_act_tuned_remez_6_1e-3.json"
         ),
-        label="Remez Leaky L1(0.001) deg 6 (acc: 0.9811)",
+        label="Remez L1(0.001) deg 6 (acc: 0.9811)",
         color="mo-",
     )
     ax.set_xticks(list(range(len(xticklabels))))
     ax.set_xticklabels(xticklabels, fontsize=8, rotation=10)
     ax.set_yscale("symlog")
+    ax.set_ybound(-1, 10 ** 9)
     ax.set_title("Fine-tuning Phase v.s. Just Switching into Approx")
     ax.set_title("Activation Magnitude Occurences of Top Accuracies Configs")
     ax.set_xlabel("activation magnitude")
