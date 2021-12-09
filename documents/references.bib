@@ -1,0 +1,81 @@
+% Approximation algorithms
+@article{chebapprox,
+  author    = {M.H. Mudde and Sterk, Alef E. and Arjan, van der Schaft},
+  title     = {Chebyshev approximation},
+  booktitle = {Student Theses Faculty of Science and Engineering},
+  year      = {2017}
+}
+
+% Introductory of HEaaN
+@inproceedings{heaan2017,
+  author    = {Cheon, Jung Hee
+               and Kim, Andrey
+               and Kim, Miran
+               and Song, Yongsoo},
+  editor    = {Takagi, Tsuyoshi
+               and Peyrin, Thomas},
+  title     = {Homomorphic Encryption for Arithmetic of Approximate Numbers},
+  booktitle = {Advances in Cryptology -- ASIACRYPT 2017},
+  year      = {2017},
+  publisher = {Springer International Publishing},
+  address   = {Cham},
+  pages     = {409--437},
+  abstract  = {We suggest a method to construct a homomorphic encryption scheme for approximate arithmetic. It supports an approximate addition and multiplication of encrypted messages, together with a new rescaling procedure for managing the magnitude of plaintext. This procedure truncates a ciphertext into a smaller modulus, which leads to rounding of plaintext. The main idea is to add a noise following significant figures which contain a main message. This noise is originally added to the plaintext for security, but considered to be a part of error occurring during approximate computations that is reduced along with plaintext by rescaling. As a result, our decryption structure outputs an approximate value of plaintext with a predetermined precision.},
+  isbn      = {978-3-319-70694-8}
+}
+
+% Bootstrapping
+@inproceedings{bootstrap2018,
+  author    = {Cheon, Jung Hee
+               and Han, Kyoohyung
+               and Kim, Andrey
+               and Kim, Miran
+               and Song, Yongsoo},
+  editor    = {Nielsen, Jesper Buus
+               and Rijmen, Vincent},
+  title     = {Bootstrapping for Approximate Homomorphic Encryption},
+  booktitle = {Advances in Cryptology -- EUROCRYPT 2018},
+  year      = {2018},
+  publisher = {Springer International Publishing},
+  address   = {Cham},
+  pages     = {360--384},
+  abstract  = {This paper extends the leveled homomorphic encryption scheme for an approximate arithmetic of Cheon et al. (ASIACRYPT 2017) to a fully homomorphic encryption, i.e., we propose a new technique to refresh low-level ciphertexts based on Gentry's bootstrapping procedure. The modular reduction operation is the main bottleneck in the homomorphic evaluation of the decryption circuit. We exploit a scaled sine function as an approximation of the modular reduction operation and present an efficient evaluation strategy. Our method requires only one homomorphic multiplication for each of iterations and so the total computation cost grows linearly with the depth of the decryption circuit. We also show how to recrypt packed ciphertexts on the RLWE construction with an open-source implementation. For example, it takes 139.8 s to refresh a ciphertext that encrypts 128 numbers with 12 bits of precision, yielding an amortized rate of 1.1 seconds per slot.},
+  isbn      = {978-3-319-78381-9}
+}
+
+% Machine learning with FHE
+@inproceedings{ml2013,
+  author    = {Graepel, Thore
+               and Lauter, Kristin
+               and Naehrig, Michael},
+  editor    = {Kwon, Taekyoung
+               and Lee, Mun-Kyu
+               and Kwon, Daesung},
+  title     = {ML Confidential: Machine Learning on Encrypted Data},
+  booktitle = {Information Security and Cryptology -- ICISC 2012},
+  year      = {2013},
+  publisher = {Springer Berlin Heidelberg},
+  address   = {Berlin, Heidelberg},
+  pages     = {1--21},
+  abstract  = {We demonstrate that, by using a recently proposed leveled homomorphic encryption scheme, it is possible to delegate the execution of a machine learning algorithm to a computing service while retaining confidentiality of the training and test data. Since the computational complexity of the homomorphic encryption scheme depends primarily on the number of levels of multiplications to be carried out on the encrypted data, we define a new class of machine learning algorithms in which the algorithm's predictions, viewed as functions of the input data, can be expressed as polynomials of bounded degree. We propose confidential algorithms for binary classification based on polynomial approximations to least-squares solutions obtained by a small number of gradient descent steps. We present experimental validation of the confidential machine learning pipeline and discuss the trade-offs regarding computational complexity, prediction accuracy and cryptographic security.},
+  isbn      = {978-3-642-37682-5}
+}
+
+% Compare function in HEaaN
+@inproceedings{compare2019,
+  author    = {Cheon, Jung Hee
+               and Kim, Dongwoo
+               and Kim, Duhyeong
+               and Lee, Hun Hee
+               and Lee, Keewoo},
+  editor    = {Galbraith, Steven D.
+               and Moriai, Shiho},
+  title     = {Numerical Method for Comparison on Homomorphically Encrypted Numbers},
+  booktitle = {Advances in Cryptology -- ASIACRYPT 2019},
+  year      = {2019},
+  publisher = {Springer International Publishing},
+  address   = {Cham},
+  pages     = {415--445},
+  abstract  = {We propose a new method to compare numbers which are encrypted by Homomorphic Encryption (HE). Previously, comparison and min/max functions were evaluated using Boolean functions where input numbers are encrypted bit-wise. However, the bit-wise encryption methods require relatively expensive computations for basic arithmetic operations such as addition and multiplication.},
+  isbn      = {978-3-030-34621-8}
+}
